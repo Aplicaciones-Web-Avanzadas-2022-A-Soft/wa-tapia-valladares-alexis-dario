@@ -134,3 +134,26 @@ console.log("Edad dario -> " + edadDario);
 edadAlexis = edadAlexis+1;
 console.log("Edad alexis -> " + edadAlexis);
 console.log("Edad dario -> " + edadDario);
+
+console.log("\n 17/05/2022 \n");
+//Variables por referencia: object ({},[])
+let notas = {
+    total:10
+};
+
+let notasSegundoBimestre = notas;
+notasSegundoBimestre.total = notasSegundoBimestre.total +1;
+console.log(notas);
+console.log(notasSegundoBimestre);
+notas.total = notas.total +1;
+console.log(notas);
+console.log(notasSegundoBimestre);
+
+console.log("CLONAR")
+//Como clonar objetos
+let notasTercerBimestre = Object.assign({},notas);
+//Object.assign([],arreglo);
+notasTercerBimestre.total = notasTercerBimestre + 1;
+console.log(notas);
+console.log(notasSegundoBimestre);
+console.log(notasTercerBimestre);
