@@ -32,3 +32,30 @@ let funcionFatArrow3 = () => {};
 funcionFatArrow1();
 funcionFatArrow2();
 funcionFatArrow3();
+
+const funcionFatArrow4 = () => {};
+const funcionFatArrow5 = (x) => {
+    return x + 1;
+};
+const funcionFatArrow6 = (x) => x+1; //FAT ARROW FUNCTIONS
+                                    //Una solo linea
+                                    //Omito el return
+                                    //Omito las llaves
+const funcionFatArrow7 = x => x+1;  //SOLO SI se tiene un parametro
+                                    //Omito los parentesis
+const funcionFatArrow8 = (x,y,z) => x+y+z;
+
+// ... -> Parametros infinitos que llegan en  un arreglo
+// Solo se puede tener un parametro inf. por funcion
+function sumarNumeros(...otrosNumeros){
+    let total = 0;
+    otrosNumeros.forEach(
+        (valorActual)=>{
+            total = total + valorActual;
+        }
+    );
+    return total;
+    //return otrosNumeros.reduce((a,v)=>a+v,0);
+}
+sumarNumeros(1,2,3,4,5,6,7,8,9,10);
+
