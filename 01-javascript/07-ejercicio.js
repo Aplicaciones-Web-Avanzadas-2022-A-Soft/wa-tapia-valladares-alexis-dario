@@ -44,3 +44,12 @@ function ejercicio(pathArchivo1, pathArchivo2, nuevoArchivo) {
         }
     )
 }
+
+ejercicio('01-variables.js','06-ejemplo.txt','07-ejemplo.txt')
+    .then(
+        (respuesta)=>{
+            console.log(respuesta);
+        }
+    )
+
+
