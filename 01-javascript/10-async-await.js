@@ -57,3 +57,5 @@ async function ejecutarPromesasAsyncAwait(path1,path2,path3){
         console.error(e);
     }
 }
+
+ejecutarPromesasAsyncAwait('01-variables.js')
