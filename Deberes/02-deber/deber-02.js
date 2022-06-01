@@ -1,4 +1,5 @@
-const fs = require('fs');
+//TEMA -> Ninio_Elegido => Digimons
+
 
 function leer(pathLectura) {
     const promesaLectura = new Promise(
@@ -39,27 +40,3 @@ function escribir(pathEscritura, nuevoContenido) {
     )
     return promesaLectura;
 }
-
-
-//ASYNC AWAIT
-//REGLAS
-//1) Estar dentro de una funcion (nombrada o anonima)
-//2) AGREGAR la palabra 'async' antes de la declaracion de la funcion
-//3) AGREGAR l palabra 'await' antes de la declaracion de una promesa
-//4) SIEMPRE utilizar 'try' y 'catch'
-console.log("\nASYNC AWAIT\n");
-
-async function ejecutarPromesasAsyncAwait(path1, path2, path3) {
-    try {
-        const primerContenido = await leer(path1);
-        const segundoContenido = await leer(path2);
-        await escribir(path3, primerContenido + segundoContenido)
-           
-        return primerContenido + segundoContenido;
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-ejecutarPromesasAsyncAwait('01-variables.js', '06-ejemplo.txt', '10-ejercicioAsync.txt')
-    .then(r => console.log(r) );
