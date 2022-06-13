@@ -1,6 +1,8 @@
 //TEMA -> Ninio_Elegido => Digimons
 
 
+
+
 function leer(pathLectura) {
     const promesaLectura = new Promise(
         (resolve, reject) => {

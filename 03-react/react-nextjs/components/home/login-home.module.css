@@ -1,0 +1,11 @@
+.azul{
+    color: blue;
+    text-align: center;
+    border: 3px orange solid;
+}
+
+.rojo{
+    color: red;
+    text-align: center;
+    border: 3px purple solid;
+}

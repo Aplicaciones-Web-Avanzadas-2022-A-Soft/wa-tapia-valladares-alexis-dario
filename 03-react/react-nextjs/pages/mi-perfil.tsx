@@ -38,6 +38,8 @@ const MiPerfilPage = () => {
     const desplegarMensaje = () => {
         if (estaLogeado) {
             return LoginHome({
+                color: 'blue',
+                backgroudColor: 'orange',
                 propiedradesImagen: {
                     width: 400,
                     height: 200,
@@ -48,7 +50,6 @@ const MiPerfilPage = () => {
             return BienvenidaHome();
         }
     }
-
 
     return (
         <Layout>
@@ -72,11 +73,11 @@ const MiPerfilPage = () => {
             <div>{estaLogeado ?
                 <LoginHome propiedradesImagen={
                     {
-                        width:300,
-                        height:150,
+                        width: 300,
+                        height: 150,
                         urlImagen: 'https://i.blogs.es/e27617/sonic/1366_2000.jpeg'
                     }
-                }></LoginHome> :
+                } color={'grenn'} backgroudColor={'red'}></LoginHome> :
                 <BienvenidaHome></BienvenidaHome>}
             </div>
 
