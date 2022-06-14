@@ -1,9 +1,56 @@
 //TEMA -> Ninio_Elegido => Digimons
+const inquirer = require('inquirer');
 
+async function main() {
+    try {
+        mostrarMenu();
+        let opcionMenuP = await  inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    name: 'opcion',
+                    message: '\nIngrese la opcion: '
+                }
 
+            ]);
+        menuCasos(opcionMenuP.opcion);
+    } catch (e) {
+        console.error(e);
+    }
+}
 
+function mostrarMenu() {
+    console.log("\nDIGIMON SYSTEM!\n\nEscoga una opción:\n" +
+        "\t1) Crear un ninio elegido\n" +
+        "\t2) Ver los ninios elegidos\n" +
+        "\t3) Actualizar un ninio elegido\n" +
+        "\t4) Eliminar a un ninio elegido\n");
+}
 
-function leer(pathLectura) {
+function menuCasos(opcion){
+    switch (opcion){
+        case '1':
+            console.log('hola 1');
+            break;
+        case '2':
+            console.log('hola 2');
+            break;
+        case '3':
+            console.log('hola 3');
+            break;
+        case '4':
+            console.log('hola 4');
+            break;
+    }
+}
+
+function accionOpcion(){
+
+}
+
+main()
+
+/*function leer(pathLectura) {
     const promesaLectura = new Promise(
         (resolve, reject) => {
             fs.readFile(
@@ -41,4 +88,4 @@ function escribir(pathEscritura, nuevoContenido) {
         }
     )
     return promesaLectura;
-}
+}*/
