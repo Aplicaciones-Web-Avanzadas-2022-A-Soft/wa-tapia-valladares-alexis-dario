@@ -3,8 +3,9 @@ const inquirer = require('inquirer');
 
 async function main() {
     try {
+        let opcionMenuP = -1;
         mostrarMenu();
-        let opcionMenuP = await  inquirer
+        opcionMenuP = await  inquirer
             .prompt([
                 {
                     type: 'input',
@@ -24,7 +25,8 @@ function mostrarMenu() {
         "\t1) Crear un ninio elegido\n" +
         "\t2) Ver los ninios elegidos\n" +
         "\t3) Actualizar un ninio elegido\n" +
-        "\t4) Eliminar a un ninio elegido\n");
+        "\t4) Eliminar a un ninio elegido\n" +
+        "\t5) Salir");
 }
 
 function menuCasos(opcion){
@@ -40,6 +42,12 @@ function menuCasos(opcion){
             break;
         case '4':
             console.log('hola 4');
+            break;
+        case '5':
+            console.log('\nADIOS\n');
+            break;
+        default:
+            console.log('Esa opcion no existe :(')
             break;
     }
 }
