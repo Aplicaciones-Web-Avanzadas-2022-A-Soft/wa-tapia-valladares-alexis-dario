@@ -1,20 +1,18 @@
 import {useState} from 'react';
 import {MonedasInterface} from "../constantes/monedas";
-import {getNodeBuiltinModuleNotSupportedInEdgeRuntimeMessage} from "next/dist/build/utils";
 
 const useSelectMoneda = (label: string, opciones: MonedasInterface[]) => {
-    // Usamos Hooks React (useState)
+    // Usamos Hooks React (userState)
     // const [state, setState] = useState('VALOR')
-    //const [valorEjemplo, setValorEjemplo] = useState('Alexis Tapia');//Hook
-    const [valorMoneda, setValorMoneda]=useState('');
-    const generarSelectMonedas=()=>{
-        return opciones.map((moneda)=>
-            (
-                <option key={moneda.id} id={moneda.id} value={moneda.id}> {moneda.nombre} </option>
+    // const [valorEjemplo, setValorEjemplo] = useState('Christian Moran')
+    const [valorMoneda, setValorMoneda] = useState('');
+    const generarSelectMonedas = () => {
+        return opciones.map(
+            (moneda) => (
+                <option key={moneda.id} id={moneda.id} value={moneda.id}> {moneda.nombre}</option>
             )
         )
     }
-
     const SelectMonedas = () => (
         <>
             <label className="form-label" htmlFor={label}>{label}</label>
@@ -22,36 +20,32 @@ const useSelectMoneda = (label: string, opciones: MonedasInterface[]) => {
                     name={label}
                     id={label}
                     value={valorMoneda}
-                    onChange={e=>setValorMoneda(e.target.value)}
+                    onChange={e => setValorMoneda(e.target.value)}
             >
-                <option value=""> Seleccione opcion</option>
+                <option value="">Seleccione opción</option>
                 {generarSelectMonedas()}
             </select>
-            {/*<label className="form-label" htmlFor="moneda">Moneda</label>*/}
-            {/*<label className="form-label"*/}
-            {/*       htmlFor="ejemplo">*/}
-            {/*    Ejemplo*/}
-            {/*</label>*/}
+            {/*<label className="form-label" htmlFor="moneda">Moneda </label>*/}
+            {/*<label className="form-label" htmlFor="ejemplo">Ejemplo </label>*/}
             {/*<p>El valor es: {valorEjemplo}</p>*/}
             {/*<input className="form-control"*/}
             {/*       value={valorEjemplo}*/}
             {/*       id="ejemplo"*/}
             {/*       onChange={(e)=>{*/}
             {/*           e.preventDefault();*/}
-            {/*           setValorEjemplo(e.target.value);*/}
+            {/*           setValorEjemplo(e.target.value)*/}
             {/*       }}*/}
             {/*       type="text"/>*/}
             {/*<button onClick={*/}
             {/*    (event)=>{*/}
             {/*        event.preventDefault();*/}
-            {/*        // valorEjemplo = 'ALEXIS'; ESTO NO SIRVE*/}
-            {/*        setValorEjemplo('ADTV' + new Date().getTime());*/}
+            {/*        setValorEjemplo('Christian '+new Date().getTime());*/}
             {/*    }*/}
-            {/*}> Cambiar ejemplo </button>*/}
+            {/*}*/}
+            {/*>Cambiar ejemplo</button>*/}
         </>
     )
-
-    return [valorMoneda,SelectMonedas]
+    return [valorMoneda, SelectMonedas]
     // return [
     //     'hola',
     //     14,

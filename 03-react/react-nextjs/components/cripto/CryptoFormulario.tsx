@@ -2,7 +2,7 @@ import {MONEDAS, MonedasInterface} from "../constantes/monedas";
 import useSelectMoneda from "../hooks/useSelectMoneda";
 import {useEffect, useState} from "react";
 
-export const CryptoFormulario = () => {
+export const CryptoFormulario = ({setMonedas}) => {
     const [monedasArreglo, setMonedasArreglo] = useState(
         //MONEDAS.map((a)=>a);
         //Object.assing([],NMONEDAS);
@@ -66,12 +66,26 @@ export const CryptoFormulario = () => {
             )
         )
     }*/
-
+    const [error,setError] = useState(false);
+    const manejarSubmitFormulario = (e) => {
+        e.preventDefault();
+        if([valorMoneda,valorCriptoMoneda].includes('')){
+            setError(true);
+        }
+        setError(false);
+        //enviar criptomonedas a nuestra ruta
+        setMonedas({
+            valorMoneda: valorMoneda,
+            valorCriptoMoneda: valorCriptoMoneda
+        })
+    }
     return (
         <>
-            <form>
+            <form onSubmit={manejarSubmitFormulario}>
                 <SelectMonedaComponente/>
                 <SelectCryptoMonedaComponente/>
+                <br/>
+                <button className={'btn btn-primary w-100'}> Consultar</button>
                 {/*<p>{nombre}</p>*/}
                 {/*<p>{numero}</p>*/}
                 {/*{componente}*/}
