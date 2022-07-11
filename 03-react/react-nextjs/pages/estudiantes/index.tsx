@@ -1,31 +1,42 @@
 import Layout from "../../components/Layout";
 import {useEffect, useState} from "react";
+import {TodosHttp} from "../../functions/http/todos.http";
 
-export interface EstudianteInerface{
-    id: number;
-    nombre: string;
+export interface EstudianteInterface {
+    id?: number;
+    nombre?: string;
+    userId?: number;
+    title?: string;
+    completed?: boolean;
 }
 
-export default function Estudiantes(){
-    const [arregloEstudiantes,setArregloEstudiantes] = useState([] as EstudianteInerface[])
-    useEffect(//Inicia el componente
-        ()=>{
-            //consultar API
-            const arregloConsultado = [
-                {id:1, nombre:'Alexis'},
-                {id:2, nombre:'Dario'},
-            ] as EstudianteInerface[];
-            setArregloEstudiantes([...arregloEstudiantes,...arregloConsultado])
-            //console.log(arregloEstudiantes);
+export default function Estudiantes() {
+    const [arregloEstudiantes, setArregloEstudiantes] = useState([] as EstudianteInterface[])
+    useEffect( // Iniciar el componente
+        () => {
+            // consulta API ...
+            consultarTodos();
         },
         []
     )
-    return(
-        <Layout title={"Estudiantes"}>
+    const consultarTodos = async () => {
+        const resultado = await TodosHttp();
+        setArregloEstudiantes([
+            ...arregloEstudiantes,
+            ...resultado]);
+    }
+
+    return (
+        <Layout title={'Estudiantes'}>
             <ul>
                 {arregloEstudiantes.map(
-                    (estudiante)=> {
-                        return (<li key={estudiante.id}>{estudiante.nombre}</li>)
+                    (estudiante) => {
+                        return (<li key={estudiante.id}>
+                            {estudiante.id} -
+                            <a href={'/estudiantes/' + estudiante.id}>
+                                {estudiante.title}
+                            </a>
+                        </li>)
                     }
                 )}
             </ul>
