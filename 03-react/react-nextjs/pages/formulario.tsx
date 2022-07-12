@@ -1,9 +1,12 @@
 import Layout from "../components/Layout";
 import {useState} from "react";
-import {useForm} from "react-hook-form";
+import {useForm, Controller} from "react-hook-form";
+import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import {toast} from "react-hot-toast";
 
 type FormularioEjemplo = {
     nombre: String;
+    estadoCivil: String;
 }
 
 export default function Formulario() {
@@ -18,12 +21,16 @@ export default function Formulario() {
 
     const controlarSubmitRHF = (data) => {
         console.log('data', data);
+        toast('Good Job',{icon: '👅'});
+        toast.success('Bien');
+        toast.error('Mal');
     }
 
-    const {register, handleSubmit, formState: {errors, isValid}} = useForm<FormularioEjemplo>(
+    const {control, register, handleSubmit, formState: {errors, isValid}} = useForm<FormularioEjemplo>(
         {
             defaultValues: {
-                nombre: 'Ale'
+                nombre: 'Ale',
+                estadoCivil: '',
             },
             mode: "onTouched",
         }
@@ -64,11 +71,12 @@ export default function Formulario() {
                                    maxLength: {value: 20, message: 'Longitud max 20'},
                                    minLength: {value: 3, message: 'Longitud min 3'},
                                    validate: {
-                                       soloNumeros: (valorActual)=>{
-                                           if(Number.isNaN(+valorActual)){
+                                       soloNumeros: (valorActual) => {
+                                           // + -> hace un cast a Number
+                                           if (Number.isNaN(+valorActual)) {
                                                //Se puede devolver false o un mensje de error
                                                return 'Ingrese solo numeros';
-                                           }else{
+                                           } else {
                                                //Se devuelve un true
                                                return true; //Esta correcto
                                            }
@@ -84,6 +92,35 @@ export default function Formulario() {
                                 Tiene errores {errors.nombre.message}
                             </div>
                         }
+                    </div>
+                    <div className="mb-3">
+                        <FormControl fullWidth>
+                            <InputLabel id="estadoCivilLabelId">Estado Civil</InputLabel>
+                            <Controller
+                                control={control}
+                                rules={{required: {value: true, message: 'Estado civil requerido'}}}
+                                name="estadoCivil"
+                                render={({field: {onChange, onBlur,value}}) => {
+                                    return <Select
+                                        labelId="estadoCivilLabelId"
+                                        id="estadoCivilId"
+                                        value={value}
+                                        label="Estado Civil"
+                                        onChange={onChange}
+                                        onBlur={onBlur}
+                                    >
+                                        <MenuItem value={''}>Seleccione uno</MenuItem>
+                                        <MenuItem value={'casado'}>Casado</MenuItem>
+                                        <MenuItem value={'soltero'}>Soltero</MenuItem>
+                                    </Select>
+                                }}
+                            />
+                            {errors.estadoCivil &&
+                                <div className={"alert alert-warning"} role={"alert"}>
+                                    Tiene errores {errors.estadoCivil.message}
+                                </div>
+                            }
+                        </FormControl>
                     </div>
                     <button type="submit"
                             disabled={!isValid}
