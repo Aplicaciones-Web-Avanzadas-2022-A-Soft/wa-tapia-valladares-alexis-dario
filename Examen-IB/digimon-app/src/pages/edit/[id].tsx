@@ -45,8 +45,8 @@ export default function nuevoElegido() {
         e.preventDefault();
         //console.log(router.query.id, elegido);
         if(typeof router.query.id === "string"){
-            console.log('SI EJECUTO UPDATE')
             await updateElegido(router.query.id, elegido);
+            console.log('SI EJECUTO UPDATE');
         }
     }
 
@@ -58,6 +58,8 @@ export default function nuevoElegido() {
             },
             body: JSON.stringify(elegido),
         });
+        console.log('VEO QUE BODY PASA')
+        console.log(elegido);
     }
 
     return (

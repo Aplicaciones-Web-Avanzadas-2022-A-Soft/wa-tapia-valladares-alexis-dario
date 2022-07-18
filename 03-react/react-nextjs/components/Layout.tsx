@@ -25,10 +25,8 @@ const Layout = ({children, title = 'This is the default title'}: Props) => (
                 rel="stylesheet"
                 href="https://fonts.googleapis.com/icon?family=Material+Icons"
             />
-            <link
-                href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
-                rel="stylesheet"
-            />
+
+
         </Head>
         <header>
             <nav>
@@ -41,29 +39,26 @@ const Layout = ({children, title = 'This is the default title'}: Props) => (
                 </Link>{' '}
                 |{' '}
                 <Link href="/mi-perfil">
-                    <a>Mi Perfil</a>
-                </Link>{' '}
-                |{' '}
-                <Link href="/users">
-                    <a>Users List</a>
+                    <a>Mi perfil</a>
                 </Link>{' '}
                 |{' '}
                 <Link href="/cripto">
                     <a>Cripto Transformador</a>
                 </Link>{' '}
+                |{' '}
+                <Link href="/users">
+                    <a>Users List</a>
+                </Link>{' '}
                 | <a href="/api/users">Users API</a>
-                |{' '}
-                <Link href="/estudiantes">
-                    <a>Estudiantes</a>
-                </Link>{' '}
-                |{' '}
-                <Link href="/formulario">
-                    <a>Formulario</a>
-                </Link>{' '}
-                |{' '}
+                | {' '} <Link href="/estudiantes">
+                <a>Estudiantes</a>
+            </Link>{' '}
+                | {' '} <Link href="/formulario">
+                <a>Formulario</a>
+            </Link>{' '}
             </nav>
         </header>
-        <div className={'container'}>
+        <div className="container">
             {children}
         </div>
         <footer>
