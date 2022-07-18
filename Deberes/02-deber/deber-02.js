@@ -23,7 +23,7 @@ async function main() {
 function mostrarMenu() {
     console.log("\nDIGIMON SYSTEM!\n\nEscoga una opción:\n" +
         "\t1) Crear un ninio elegido\n" +
-        "\t2) Ver los ninios elegidos\n" +
+        "\t2) Ver los ninios formularios\n" +
         "\t3) Actualizar un ninio elegido\n" +
         "\t4) Eliminar a un ninio elegido\n" +
         "\t5) Salir");
