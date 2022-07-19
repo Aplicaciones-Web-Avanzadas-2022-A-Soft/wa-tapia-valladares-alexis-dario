@@ -132,7 +132,7 @@ export default function Formulario() {
                             <h1>KONSTA UI</h1>
                             <Controller
                                 control={control}
-                                rules={{required: {value: true, message: 'Se requiere descripcion'}}}
+                                rules={{required: {value: true, message: 'Se requiere TV Show'}}}
                                 name="tvshow"
                                 render={({field: {onChange, onBlur}}) => {
                                     return <List>
