@@ -9,11 +9,24 @@ import IconButton from "@mui/material/IconButton";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {indigo, red} from "@mui/material/colors";
+import {makeStyles} from "@mui/styles";
 
-
+const useStyles = makeStyles({
+    item:{
+        minWidth: "350px",
+        margin: "1em",
+        boxSizing: "border-box",
+        border: "solid black 1px"
+    },
+    media:{
+        width: "225px",
+    }
+});
 
 export default function verDigimons() {
     const router = useRouter();
+
+    const estilos = useStyles();
 
     const [digimons, setDigimon] = useState<Digimon[]>([]);
 
@@ -42,7 +55,7 @@ export default function verDigimons() {
                     {
                         digimons.map(
                             (value) => (
-                                <Card key={value.iddigimon}>
+                                <Card key={value.iddigimon} className={estilos.item}>
                                     <CardHeader
                                         avatar={
                                             <Avatar sx={{bgcolor: indigo[400]}} aria-label="recipe">
@@ -57,9 +70,9 @@ export default function verDigimons() {
                                         title={<Typography variant={'h6'}><b>{value.nombre}</b></Typography>}
                                         subheader={<Typography>Nivel: {value.nivel}</Typography>}
                                     />
-                                    <CardMedia
+                                    <CardMedia className={estilos.media}
                                         component={"img"}
-                                        height={"100"}
+                                        height={"200"}
                                         image={value.imagen}
                                     />
                                     <CardContent>
