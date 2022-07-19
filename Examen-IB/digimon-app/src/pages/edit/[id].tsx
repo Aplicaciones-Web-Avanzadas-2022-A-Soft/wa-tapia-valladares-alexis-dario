@@ -64,6 +64,8 @@ export default function nuevoElegido() {
             },
             body: JSON.stringify(elegido),
         });
+        console.log('VEO QUE BODY PASA')
+        console.log(elegido);
     }
 
     return (

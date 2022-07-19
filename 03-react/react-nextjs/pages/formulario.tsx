@@ -3,10 +3,13 @@ import {useState} from "react";
 import {useForm, Controller} from "react-hook-form";
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import {toast} from "react-hot-toast";
+import {Accessibility} from "@mui/icons-material";
+import {List, ListInput} from "konsta/react";
 
 type FormularioEjemplo = {
     nombre: String;
     estadoCivil: String;
+    tvshow: String;
 }
 
 export default function Formulario() {
@@ -21,7 +24,7 @@ export default function Formulario() {
 
     const controlarSubmitRHF = (data) => {
         console.log('data', data);
-        toast('Good Job',{icon: '👅'});
+        toast('Good Job', {icon: '👅'});
         toast.success('Bien');
         toast.error('Mal');
     }
@@ -31,6 +34,7 @@ export default function Formulario() {
             defaultValues: {
                 nombre: 'Ale',
                 estadoCivil: '',
+                tvshow: ''
             },
             mode: "onTouched",
         }
@@ -100,7 +104,7 @@ export default function Formulario() {
                                 control={control}
                                 rules={{required: {value: true, message: 'Estado civil requerido'}}}
                                 name="estadoCivil"
-                                render={({field: {onChange, onBlur,value}}) => {
+                                render={({field: {onChange, onBlur, value}}) => {
                                     return <Select
                                         labelId="estadoCivilLabelId"
                                         id="estadoCivilId"
@@ -118,6 +122,36 @@ export default function Formulario() {
                             {errors.estadoCivil &&
                                 <div className={"alert alert-warning"} role={"alert"}>
                                     Tiene errores {errors.estadoCivil.message}
+                                </div>
+                            }
+                        </FormControl>
+                    </div>
+                    <div className={"mb-3"}>
+                        <FormControl fullWidth>
+                            <br/>
+                            <h1>KONSTA UI</h1>
+                            <Controller
+                                control={control}
+                                rules={{required: {value: true, message: 'Se requiere descripcion'}}}
+                                name="tvshow"
+                                render={({field: {onChange, onBlur}}) => {
+                                    return <List>
+                                        <ListInput
+                                            label="TV Show"
+                                            type="text"
+                                            onChange={onChange}
+                                            onBlur={onBlur}
+                                            placeholder="Your favorite Tv Show"
+                                            info="Type somehing to see"
+                                            media={<Accessibility/>}
+                                        />
+                                    </List>
+                                }}
+                            />
+                            {
+                                errors.tvshow &&
+                                <div className={"alert alert-warning"} role={"alert"}>
+                                    Tiene errores {errors.tvshow.message}
                                 </div>
                             }
                         </FormControl>
