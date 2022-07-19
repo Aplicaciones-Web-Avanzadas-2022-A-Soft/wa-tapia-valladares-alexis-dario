@@ -1,0 +1,23 @@
+/*Elegidos*/
+INSERT INTO elegido VALUES (1,'Alexis','Tapia','M',1.73,2974368);
+INSERT INTO elegido VALUES (2,'Clarissa','Tapia','F',1.65,2655491);
+INSERT INTO elegido VALUES (3,'Dario','Valladares','M',1.72,2659013);
+INSERT INTO elegido VALUES (4,'Melissa','Renteria','F',1.71,3041458);
+
+/*Digimon*/
+/*Elegido #1*/                
+INSERT INTO digimon VALUES (1,1,'Garummon','Hybrid','Free','Cyborg','https://digimon-api.com/images/digimon/w/Garummon.png');
+INSERT INTO digimon VALUES (2,1,'Craniummon','Ultimate','Vaccine','Holy Knight','https://digimon-api.com/images/digimon/w/Craniummon.png');
+INSERT INTO digimon VALUES (3,1,'Holy Angemon','Perfect','Vaccine','Archangel','https://digimon-api.com/images/digimon/w/Holy_Angemon.png');
+/*Elegido #2*/
+INSERT INTO digimon VALUES (4,2,'Ancient Beatmon','Ultimate','Vaccine','Ancient Insect','https://digimon-api.com/images/digimon/w/Ancient_Beatmon.png');
+INSERT INTO digimon VALUES (5,2,'Dukemon','Ultimate','Vaccine','Holy Knight','https://digimon-api.com/images/digimon/w/Dukemon(Crimson_Mode).png');
+INSERT INTO digimon VALUES (6,2,'Footmon','Perfect','Vaccine','Cyborg','https://digimon-api.com/images/digimon/w/Footmon.png');
+/*Elegido #3*/
+INSERT INTO digimon VALUES (7,3,'Apocalymon','Ultimate','Free','Species','https://digimon-api.com/images/digimon/w/Apocalymon.png');
+INSERT INTO digimon VALUES (11,3,'Pipismon','Armor','Data','Mutant','https://digimon-api.com/images/digimon/w/Pipismon.png');
+INSERT INTO digimon VALUES (12,3,'Greymon','Adult','Virus','Dinosaur','https://digimon-api.com/images/digimon/w/Greymon_(2010_Anime_Version).png');
+/*Elegido #4*/
+INSERT INTO digimon VALUES (14,4,'Guilmon','Child','Virus','Demon','https://digimon-api.com/images/digimon/w/Guilmon_(X-Antibody).png');
+INSERT INTO digimon VALUES (15,4,'Craniummon','Ultimate','Vaccine','Holy Knight','https://digimon-api.com/images/digimon/w/Craniummon_(X-Antibody).png');
+INSERT INTO digimon VALUES (17,4,'Grace Novamon','Ultimate','Vaccine','Galaxy','https://digimon-api.com/images/digimon/w/Grace_Novamon.png');
