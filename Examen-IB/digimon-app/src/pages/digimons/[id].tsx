@@ -3,12 +3,14 @@ import Head from "next/head";
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/Layout";
 import {useRouter} from "next/router";
-import {Card, CardHeader, CardMedia, CardContent, Typography, CardActions} from "@mui/material";
+import {Card, CardHeader, CardMedia, CardContent, Typography, CardActions, Avatar, Grid} from "@mui/material";
 import {Digimon} from "../../interfaces/digimon";
 import IconButton from "@mui/material/IconButton";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {red} from "@mui/material/colors";
+import {indigo, red} from "@mui/material/colors";
+
+
 
 export default function verDigimons() {
     const router = useRouter();
@@ -16,7 +18,7 @@ export default function verDigimons() {
     const [digimons, setDigimon] = useState<Digimon[]>([]);
 
     const loadDigimons = async (id: string) => {
-        const res = await fetch('http://localhost:3000/api/digi/'+id,{method: 'GET'});
+        const res = await fetch('http://localhost:3000/api/digi/' + id, {method: 'GET'});
         const data = await res.json();
         setDigimon(data);
     }
@@ -25,7 +27,7 @@ export default function verDigimons() {
         if (typeof router.query.id === 'string') {
             loadDigimons(router.query.id)
         }
-    }, [])
+    }, [router.query])
 
     return (
         <Layout>
@@ -36,37 +38,47 @@ export default function verDigimons() {
             </Head>
             <h1 className={styles.tituloLista}>Lista de Digimons</h1>
             <div>
-                {
-                    digimons.map(
-                        (value) => (
-                            <Card>
-                                <CardHeader
-                                    title={value.nombre}
-                                    subheader={value.nivel}
-                                />
-                                <CardMedia
-                                    component={"img"}
-                                    height={"100"}
-                                    image={value.imagen}
-                                />
-                                <CardContent>
-                                    <Typography>{value.atributo}</Typography>
-                                    <Typography>{value.tipo}</Typography>
-                                    <Typography>{value.atributo}</Typography>
-                                    <Typography> ID propietario: {value.idelegido}</Typography>
-                                </CardContent>
-                                <CardActions disableSpacing>
-                                    <IconButton aria-label="edit" size="large">
-                                        <ModeEditOutlineOutlinedIcon fontSize="large"/>
-                                    </IconButton>
-                                    <IconButton aria-label="delete" size="large">
-                                        <DeleteIcon fontSize="large" sx={{ color: red[700] }}/>
-                                    </IconButton>
-                                </CardActions>
-                            </Card>
+                <Grid container spacing={4} justifyContent={'center'}>
+                    {
+                        digimons.map(
+                            (value) => (
+                                <Card key={value.iddigimon}>
+                                    <CardHeader
+                                        avatar={
+                                            <Avatar sx={{bgcolor: indigo[400]}} aria-label="recipe">
+                                                {value.iddigimon}
+                                            </Avatar>
+                                        }
+                                        action={
+                                            <IconButton aria-label="edit" size="large">
+                                                <ModeEditOutlineOutlinedIcon fontSize="large"/>
+                                            </IconButton>
+                                        }
+                                        title={<Typography variant={'h6'}><b>{value.nombre}</b></Typography>}
+                                        subheader={<Typography>Nivel: {value.nivel}</Typography>}
+                                    />
+                                    <CardMedia
+                                        component={"img"}
+                                        height={"100"}
+                                        image={value.imagen}
+                                    />
+                                    <CardContent>
+                                        <Typography> <strong><i>Atributo:</i></strong>
+                                            <i>{value.atributo}</i></Typography>
+                                        <Typography> <strong><i>Tipo:</i></strong> <i>{value.tipo}</i></Typography>
+                                        <Typography> <strong><i>ID propietario:</i></strong>
+                                            <i>{value.idelegido}</i></Typography>
+                                    </CardContent>
+                                    <CardActions disableSpacing>
+                                        <IconButton aria-label="delete" size="large">
+                                            <DeleteIcon fontSize="large" sx={{color: red[700]}}/>
+                                        </IconButton>
+                                    </CardActions>
+                                </Card>
+                            )
                         )
-                    )
-                }
+                    }
+                </Grid>
             </div>
         </Layout>
     )
