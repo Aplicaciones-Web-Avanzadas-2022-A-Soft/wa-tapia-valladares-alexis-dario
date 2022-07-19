@@ -14,6 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
                 return res.json(result.rows[0]);
             } catch (e) {
+                // @ts-ignore
                 return res.status(500).json({error: e.message})
             }
         case 'PUT':
@@ -27,6 +28,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
                 return res.json(result.rows[0]);
             } catch (e) {
+                // @ts-ignore
                 return res.status(500).json({error: e.message})
             }
         case 'DELETE':
@@ -39,6 +41,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
                 return res.json(result.rows[0]);
             } catch (e) {
+                // @ts-ignore
                 return res.status(500).json({error: e.message})
             }
         default:

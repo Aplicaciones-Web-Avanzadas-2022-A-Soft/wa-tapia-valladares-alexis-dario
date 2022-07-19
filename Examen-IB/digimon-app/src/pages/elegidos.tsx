@@ -36,7 +36,7 @@ export default function Elegidos(props: Elegido) {
                         <div style={{textAlign: "center"}}>
                             <ImagenPrincipal
                                 src={'/Logo.png'}
-                                title={"Intro Digimon"}/>
+                                title={"Intro Id"}/>
                         </div>
                         <div style={{textAlign: 'right', marginRight:'1rem'}}>
                             <Button onClick={() => router.push('/formularios/nuevoElegido')} variant="outlined"
@@ -54,14 +54,4 @@ export default function Elegidos(props: Elegido) {
             }
         </>
     )
-}
-
-export const getServerSideProps = async () => {
-    const res = await fetch('http://localhost:3000/api/tasks');
-    const tasks = await res.json();
-    return {
-        props: {
-            elegidos: tasks,
-        },
-    }
 }

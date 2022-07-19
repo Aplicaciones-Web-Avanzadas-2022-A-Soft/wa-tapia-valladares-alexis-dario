@@ -6,7 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import {Card, CardContent, Grid, TextField, Typography} from "@mui/material";
 import {Button} from "@mui/material";
 import {Cached} from "@mui/icons-material";
-import {useState,ChangeEvent, FormEvent, useEffect} from "react";
+import {useState, ChangeEvent, FormEvent, useEffect} from "react";
 import {Elegido} from "../../interfaces/elegido";
 import Layout from "../../components/Layout";
 import {useRouter} from "next/router";
@@ -16,45 +16,51 @@ export default function nuevoElegido() {
     const router = useRouter();
 
     const [elegido, setElegido] = useState({
-        idelegido:'',
+        idelegido: '',
         nombre: '',
         apellido: '',
         sexo: '',
         estatura: '',
-        telefono:''
+        telefono: ''
     });
 
-    const loadElegido = async (id:string|string[])=>{
-        const res = await fetch('http://localhost:3000/api/tasks/'+ id);
+    const loadElegido = async (id: string | string[]) => {
+        const res = await fetch('http://localhost:3000/api/tasks/' + id);
         const elegido = await res.json();
         //console.log(elegido);
         setElegido(elegido);
     }
 
-    useEffect(()=>{
-        if(router.query.id){
+    useEffect(() => {
+        if (typeof router.query.id === 'string') {
             loadElegido(router.query.id)
         }
-    },[router.query])
+    }, [router.query])
 
-    const handleChange = ({target:{name,value}}: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => {
         setElegido({...elegido, [name]: value});
     }
 
-    const  handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         //console.log(router.query.id, elegido);
-        if(typeof router.query.id === "string"){
-            console.log('SI EJECUTO UPDATE')
-            await updateElegido(router.query.id, elegido);
+        try {
+            if (typeof router.query.id === "string") {
+                console.log('SI EJECUTO UPDATE')
+                await updateElegido(router.query.id, elegido);
+            }
+            await router.push('/elegidos');
+        } catch (error) {
+            console.log(error);
         }
+
     }
 
-    const updateElegido = async (id:string, elegido:Elegido)=>{
-        await fetch('http://localhost:3000/api/tasks/'+ id,{
+    const updateElegido = async (id: string, elegido: Elegido) => {
+        await fetch('http://localhost:3000/api/tasks/' + id, {
             method: 'PUT',
-            headers:{
-                'Content-Type': 'application-json'
+            headers: {
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(elegido),
         });

@@ -1,16 +1,13 @@
 import {Elegido} from "../interfaces/elegido";
-import {Card, CardContent, Typography} from "@mui/material";
+import {Button, Card, CardContent, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import styles from '../styles/Home.module.css';
 import {useRouter} from "next/router";
-
-
-interface Props {
-    elegidos: Elegido[];
-}
+import {red, grey} from "@mui/material/colors";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 
 export function ElegidosList({idelegido}: Elegido) {
@@ -41,7 +38,7 @@ export function ElegidosList({idelegido}: Elegido) {
                 elegidos.map((value) => (
                         <Card style={{
                             margin: '1rem',
-                            backgroundColor: '#A2D6E1',
+                            backgroundColor: '#eceff1',
                             border: 'ridge #4785A8 5px'
                         }}
                               key={value.idelegido}
@@ -59,12 +56,17 @@ export function ElegidosList({idelegido}: Elegido) {
                                     <Typography><strong>Teléfono:</strong> {value.telefono} </Typography>
                                 </div>
                                 <div>
+                                    <Button onClick={() => router.push(`/digimons/${value.idelegido}`)} variant="outlined" sx={{ color: grey[900] }} startIcon={<VisibilityIcon fontSize="large"/>}>
+                                        Digimons
+                                    </Button>
+                                </div>
+                                <div>
                                     <IconButton onClick={() => router.push(`/edit/${value.idelegido}`)} aria-label="edit" size="large">
                                         <ModeEditOutlineOutlinedIcon fontSize="large"/>
                                     </IconButton>
                                     <IconButton onClick={() => handleDelete(value.idelegido)} aria-label="delete"
                                                 size="large">
-                                        <DeleteIcon fontSize="large"/>
+                                        <DeleteIcon fontSize="large" sx={{ color: red[700] }}/>
                                     </IconButton>
 
                                 </div>

@@ -48,7 +48,7 @@ const Home = () => {
           </h1>
           <ImagenPrincipal
               src={"https://media3.giphy.com/media/11TkuRl1Ff32ak/giphy.gif?cid=790b76114f1863dc1e1bcd7bd724f3e768730cafbd6709b7&rid=giphy.gif&ct=g"}
-              title={"Intro Digimon"}
+              title={"Intro Id"}
           />
           <a href={"/elegidos"}>
             <BotonInicio>Ingresar</BotonInicio>
