@@ -45,7 +45,7 @@ export default function Elegidos(props: Elegido) {
                             </Button>
                         </div>
                         <div>
-                            <ElegidosList></ElegidosList>
+                            <ElegidosList/>
                         </div>
                     </div>
 

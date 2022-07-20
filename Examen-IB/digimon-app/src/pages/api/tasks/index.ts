@@ -2,7 +2,7 @@ import {NextApiRequest, NextApiResponse} from "next";
 import {conn} from "../../../utils/database";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    const {method, body} = req;
+    const {method, body, query} = req;
     switch (method) {
         case 'GET':
             try {
@@ -23,6 +23,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             } catch (e) {
                 // @ts-ignore
                 return res.status(400).json({error: e.message})
+            }
+        case 'DELETE':
+            try {
+                const text = 'DELETE FROM elegido WHERE idelegido = $1 RETURNING *';
+                const values = [query.id];
+                const result = await conn.query(text, values);
+                if (result.rows.length == 0)
+                    return res.status(404).json({message: "Identificador no existente"});
+
+                return res.json(result.rows[0]);
+            } catch (e) {
+                // @ts-ignore
+                return res.status(500).json({error: e.message})
             }
         default:
             res.status(400).json("metodo invalido");

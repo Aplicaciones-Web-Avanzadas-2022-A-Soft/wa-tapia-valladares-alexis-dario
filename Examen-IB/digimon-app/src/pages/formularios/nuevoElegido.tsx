@@ -6,7 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import {Card, CardContent, Grid, TextField, Typography} from "@mui/material";
 import {Button} from "@mui/material";
 import {Save} from "@mui/icons-material";
-import {useState,ChangeEvent, FormEvent} from "react";
+import {useState, ChangeEvent, FormEvent} from "react";
 import {Elegido} from "../../interfaces/elegido";
 import Layout from "../../components/Layout";
 import {useRouter} from "next/router";
@@ -16,28 +16,28 @@ export default function nuevoElegido() {
     const router = useRouter();
 
     const [elegido, setElegido] = useState({
-        idelegido:'',
+        idelegido: '',
         nombre: '',
         apellido: '',
         sexo: '',
         estatura: '',
-        telefono:''
+        telefono: ''
     });
 
-    const handleChange = ({target:{name,value}}: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => {
         setElegido({...elegido, [name]: value});
     }
 
-    const  handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         await createElegido(elegido);
         await router.push('../elegidos');
     }
 
-    const createElegido = async (elegido :Elegido) => {
-        await fetch('http://localhost:3000/api/tasks',{
+    const createElegido = async (elegido: Elegido) => {
+        await fetch('http://localhost:3000/api/tasks', {
             method: 'POST',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(elegido)
@@ -59,43 +59,50 @@ export default function nuevoElegido() {
                         <CardContent>
                             <form onSubmit={handleSubmit}>
                                 <TextField variant={'outlined'} label={"Ingresa el ID"}
-                                           sx={{display: 'block', margin: '.5rem'}}
+                                           sx={{display: 'block', margin: '.5rem .0 1rem 0'}}
                                            name={"idelegido"}
                                            onChange={handleChange}
+                                           fullWidth={true}
                                 />
                                 <TextField variant={'outlined'} label={"Ingresa el Nombre"}
-                                           sx={{display: 'block', margin: '.5rem'}}
+                                           sx={{display: 'block', margin: '.5rem .0 1rem 0'}}
                                            name={"nombre"}
                                            onChange={handleChange}
+                                           fullWidth={true}
                                 />
                                 <TextField variant={'outlined'} label={"Ingresa el Apellido"}
-                                           sx={{display: 'block', margin: '.5rem'}}
+                                           sx={{display: 'block', margin: '.5rem .0 1rem 0'}}
                                            name={"apellido"}
                                            onChange={handleChange}
+                                           fullWidth={true}
+                                />
+                                <TextField variant={'outlined'} label={"Ingresa la Estatura"}
+                                           sx={{display: 'block', margin: '.5rem .0 1rem 0'}}
+                                           name={"estatura"}
+                                           onChange={handleChange}
+                                           fullWidth={true}
+                                />
+                                <TextField variant={'outlined'} label={"Ingresa el Teléfono"}
+                                           sx={{display: 'block', margin: '.5rem .0 1rem 0'}}
+                                           name={"telefono"}
+                                           onChange={handleChange}
+                                           fullWidth={true}
                                 />
                                 <FormLabel id="genero">Género</FormLabel>
                                 <RadioGroup
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    sx={{display: 'block', margin: '.5rem'}}
+                                    sx={{display: 'block', margin: '.5rem .0 1rem 0'}}
                                     name="sexo"
                                     onChange={handleChange}
                                 >
                                     <FormControlLabel value="F" control={<Radio/>} label="Femenino"/>
                                     <FormControlLabel value="M" control={<Radio/>} label="Masculino"/>
                                 </RadioGroup>
-                                <TextField variant={'outlined'} label={"Ingresa la Estatura"}
-                                           sx={{display: 'block', margin: '.5rem'}}
-                                           name={"estatura"}
-                                           onChange={handleChange}
-                                />
-                                <TextField variant={'outlined'} label={"Ingresa el Teléfono"}
-                                           sx={{display: 'block', margin: '.5rem'}}
-                                           name={"telefono"}
-                                           onChange={handleChange}
-                                />
-                                <Button type={'submit'} variant="outlined" color={"primary"} startIcon={<Save/>}>
-                                    Guardar
-                                </Button>
+                                <div style={{marginTop: '1rem', textAlign: 'center'}}>
+                                    <Button type={'submit'} variant="outlined" color={"primary"} startIcon={<Save/>}>
+                                        Guardar
+                                    </Button>
+                                </div>
                             </form>
                         </CardContent>
                     </Card>
