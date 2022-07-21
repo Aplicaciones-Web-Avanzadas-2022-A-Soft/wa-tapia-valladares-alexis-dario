@@ -3,55 +3,61 @@
 
 const fs = require('fs');
 
-function leerEscribir(path1) {
+function leerEscribir(pathArchivo1,pathArchivo2,pathNuevoArchivo) {
     const promesaLeerEscribir = new Promise(
         (resolve, reject) => {
             fs.readFile(
-                path1,
+                pathArchivo1,
                 'utf-8',
-                (errorLectura1, contenidoLectura1) => {
-                    if (errorLectura1) {
-                        reject(errorLectura1);
+                (errorLecturaPrimerArchivo, contenidoPrimerArchivo) => {
+                    if (errorLecturaPrimerArchivo) {
+                        //console.error(errorLecturaPrimerArchivo);
+                        reject('Error leyendo el primer archivo');
                     } else {
-                        resolve(contenidoLectura1);
+                        fs.readFile(
+                            pathArchivo2,
+                            'utf-8',
+                            (errorLecturaSegundoArchivo, contenidoSegundoArchivo) => {
+                                if (errorLecturaSegundoArchivo) {
+                                    //console.error(errorLecturaSegundoArchivo);
+                                    reject('Error leyendo el segundo archivo');
+                                } else {
+                                    //console.log(contenidoPrimerArchivo,contenidoSegundoArchivo);
+                                    const archivosUnidos = contenidoPrimerArchivo + contenidoSegundoArchivo;
+                                    fs.writeFile(
+                                        pathNuevoArchivo,
+                                        archivosUnidos,
+                                        (errorEscritura) => {
+                                            if (errorEscritura) {
+                                                //console.error(errorEscritura);
+                                                reject('Error escribiendo archivo');
+                                            } else {
+                                                console.log('Escritura con exito!');
+                                                resolve(fs.readFileSync(pathNuevoArchivo, "utf8"));
+                                            }
+                                        }
+                                    );
+                                }
+
+                            }
+                        );
                     }
+
                 }
-            )
+            );
         }
     )
     return promesaLeerEscribir;
 }
 
-leerEscribir('ex1.txt')
+leerEscribir('ex1.txt','ex2.txt','nuevoArchivo.txt')
     .then(
         respuesta => {
             console.log(respuesta);
         }
     )
-
-
-/*fs.readFile(
-        path2,
-        'utf-8',
-        (errorLectura2, contenidoLectura2) => {
-            if (errorLectura2) {
-                reject(errorLectura2);
-            } else {
-                resolve(contenidoLectura2);
-            }
+    .catch(
+        error => {
+            console.error(error);
         }
-    );
-    fs.writeFile(
-        '06-nuevo-archivo.txt',
-        archivosUnidos,
-        (errorEscritura)=>{
-            if(errorEscritura){
-                console.error(errorEscritura);
-                throw new Error('Error escribiendo archivo');
-            }else{
-                console.log('Escritura con exito!');
-                console.log(fs.readFileSync("./06-nuevo-archivo.txt", "utf8"));
-            }
-        }
-    );
- */
+    )
