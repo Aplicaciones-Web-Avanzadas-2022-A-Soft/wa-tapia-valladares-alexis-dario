@@ -2,27 +2,28 @@ import {ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway} from "
 import {Server, Socket} from 'socket.io';
 
 @WebSocketGateway(
-    8585,
+    8080,
     {
-        cors:{
+        cors: {
             origin: '*',
         }
     }
 )
 
-export class EventosGateway{
+export class EventosGateway {
     @SubscribeMessage('hola')
     devolverHola(
         @MessageBody()
-            message:{nombre:string},
+            message: { nombre: string },
         @ConnectedSocket()
             socket: Socket
-    ){
+    ) {
+        console.log('message', message);
         socket.broadcast
             .emit(
                 'escucharEventoHola',
                 {
-                    mensaje: 'Bienvenido' + message.nombre
+                    mensaje: 'Bienvenido ->' + message.nombre
                 }
             );
         return 'ok';
