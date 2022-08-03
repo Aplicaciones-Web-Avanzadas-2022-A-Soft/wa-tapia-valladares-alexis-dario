@@ -14,7 +14,7 @@ export class EventosGateway {
     @SubscribeMessage('hola')
     devolverHola(
         @MessageBody()
-            message: { nombre: string },
+            message: { mensaje: string },
         @ConnectedSocket()
             socket: Socket
     ) {
@@ -23,9 +23,40 @@ export class EventosGateway {
             .emit(
                 'escucharEventoHola',
                 {
-                    mensaje: 'Bienvenido ->' + message.nombre
+                    mensaje: 'Bienvenido ->' + message.mensaje
                 }
             );
-        return 'ok';
+        return {mensaje: 'ok'};
+    }
+
+    @SubscribeMessage('unirseSala')
+    uniserSala(
+        @MessageBody()
+            message: { salaId: string, nombre: string },
+        @ConnectedSocket()
+            socket: Socket
+    ) {
+        socket.join(message.salaId);
+        const mensajeBienvenidaSala = {mensaje: 'Bienvenido ' + message.nombre};
+        socket.broadcast.to(message.salaId)
+            .emit('escucharEventoUnirseSala', mensajeBienvenidaSala);
+        return {mensaje: 'ok'};
+    }
+
+    @SubscribeMessage('enviarMensaje')
+    enviarMensaje(
+        @MessageBody()
+            message: { salaId: string, nombre: string, mensaje: string },
+        @ConnectedSocket()
+            socket: Socket
+    ) {
+        const mensajeSala = {
+            nombre: message.nombre,
+            mensaje: message.mensaje,
+            salaId: message.salaId
+        };
+        socket.broadcast.to(message.salaId)
+            .emit('escucharEventoMensajeSala', mensajeSala);
+        return {mensaje: 'ok'};
     }
 }
