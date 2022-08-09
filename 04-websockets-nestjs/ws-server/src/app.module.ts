@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import {EventosModule} from './eventos/eventos.module'
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {UsuarioEntity} from "./usuario/dto/usuario.entity";
+import {NotaEntity} from "./nota/nota.entity";
 
 @Module({
   imports: [
@@ -13,7 +14,9 @@ import {UsuarioEntity} from "./usuario/dto/usuario.entity";
             name: 'default', //nombre de la conexion
             type: 'sqlite',
             database: './bdd/bdd.sqlite',
-            entities: [UsuarioEntity], //entidades de TOODO el aplicativo
+            entities: [
+                UsuarioEntity, NotaEntity
+            ], //entidades de TOODO el aplicativo
             synchronize: true,
             dropSchema: true
           }
