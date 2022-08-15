@@ -39,5 +39,5 @@ export class NotaEntity{
         ()=> UsuarioEntity, //Entidad relacionada
         (user) => user.notas
     )
-    usuario: UsuarioEntity;
+    usuario: UsuarioEntity | number;
 }

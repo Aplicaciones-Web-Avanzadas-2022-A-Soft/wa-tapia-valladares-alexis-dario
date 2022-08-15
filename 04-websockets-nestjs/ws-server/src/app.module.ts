@@ -21,8 +21,8 @@ import {NotaEntity} from "./nota/nota.entity";
             dropSchema: true
           }
       ),
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+  ], //Otros modulos - Agrupador
+  controllers: [AppController], //Controladores - HTTP Validaciones
+  providers: [AppService], //Servicios - Logica de negocio
 })
 export class AppModule {}

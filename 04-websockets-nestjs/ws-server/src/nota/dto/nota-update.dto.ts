@@ -1,5 +1,4 @@
 import {IsNotEmpty, IsNumber, IsOptional, IsString} from "class-validator";
-import {UsuarioEntity} from "../../usuario/dto/usuario.entity";
 
 export class NotaUpdateDto{
     @IsOptional()
@@ -19,5 +18,6 @@ export class NotaUpdateDto{
     comentario: string
 
     @IsNotEmpty()
-    usuario: UsuarioEntity
+    @IsNumber()
+    usuario: number;
 }

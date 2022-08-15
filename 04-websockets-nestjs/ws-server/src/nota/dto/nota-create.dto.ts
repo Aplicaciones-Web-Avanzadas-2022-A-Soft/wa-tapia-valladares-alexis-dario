@@ -1,5 +1,4 @@
-import {IsNotEmpty, IsNumber, IsString} from "class-validator";
-import {UsuarioEntity} from "../../usuario/dto/usuario.entity";
+import {IsNotEmpty, IsNumber, IsOptional, IsString} from "class-validator";
 
 export class NotaCreateDto{
     @IsNotEmpty()
@@ -14,10 +13,11 @@ export class NotaCreateDto{
     @IsNumber()
     notaExamenFinal: number
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     comentario: string
 
     @IsNotEmpty()
-    usuario: UsuarioEntity
+    @IsNumber()
+    usuario: number;
 }
