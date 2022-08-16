@@ -2,6 +2,7 @@ import {Module} from "@nestjs/common";
 import {UsuarioService} from "./usuario.service";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {UsuarioEntity} from "./dto/usuario.entity";
+import {UsuarioController} from "./usuario.controller";
 
 @Module(
     {
@@ -13,6 +14,9 @@ import {UsuarioEntity} from "./dto/usuario.entity";
         ],
         providers: [UsuarioService],
         exports: [UsuarioService],
+        controllers:[
+            UsuarioController
+        ]
     }
 )
 
