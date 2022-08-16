@@ -7,9 +7,7 @@ import {Server, Socket} from 'socket.io';
         cors: {
             origin: '*',
         }
-    }
-)
-
+    })
 export class EventosGateway {
     @SubscribeMessage('hola')
     devolverHola(
@@ -23,23 +21,22 @@ export class EventosGateway {
             .emit(
                 'escucharEventoHola',
                 {
-                    mensaje: 'Bienvenido ->' + message.mensaje
-                }
-            );
+                    mensaje: 'Bienvenido ' + message.mensaje
+                });
         return {mensaje: 'ok'};
     }
 
     @SubscribeMessage('unirseSala')
-    uniserSala(
+    unirseSala(
         @MessageBody()
             message: { salaId: string, nombre: string },
         @ConnectedSocket()
             socket: Socket
     ) {
         socket.join(message.salaId);
-        const mensajeBienvenidaSala = {mensaje: 'Bienvenido ' + message.nombre};
+        const mensajeDeBienvenidaSala = {mensaje: 'Bienvenido ' + message.nombre};
         socket.broadcast.to(message.salaId)
-            .emit('escucharEventoUnirseSala', mensajeBienvenidaSala);
+            .emit('escucharEventoUnirseSala', mensajeDeBienvenidaSala);
         return {mensaje: 'ok'};
     }
 
@@ -50,13 +47,16 @@ export class EventosGateway {
         @ConnectedSocket()
             socket: Socket
     ) {
+        // backend
         const mensajeSala = {
             nombre: message.nombre,
             mensaje: message.mensaje,
             salaId: message.salaId
         };
+        console.log('mensajeSala', mensajeSala)
         socket.broadcast.to(message.salaId)
             .emit('escucharEventoMensajeSala', mensajeSala);
         return {mensaje: 'ok'};
     }
+
 }

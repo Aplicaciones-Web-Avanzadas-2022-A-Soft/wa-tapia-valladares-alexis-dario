@@ -10,6 +10,6 @@ export class UsuarioCreateDto {
     apellidos: string;
 
     @IsNotEmpty()
-    @IsIn(['U','A'])
+    @IsIn(['U', 'A'])
     rol: string;
 }

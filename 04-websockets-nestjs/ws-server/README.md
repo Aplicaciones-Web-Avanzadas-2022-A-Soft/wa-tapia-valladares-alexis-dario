@@ -71,3 +71,17 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+`modulos A`   ->    `controllers A`
+                    `services A`
+                    `importar modulos B`
+
+`modulos B`   ->    `controllers B`
+                    `importar modulos C`
+
+`modulos C`   ->    `services C`
+ 
+`controlador suma` ->    `peticiones HTTP`
+                         `servicio suma`   
+
+`servicio suma`    ->    `agrupar logica y reusarla`

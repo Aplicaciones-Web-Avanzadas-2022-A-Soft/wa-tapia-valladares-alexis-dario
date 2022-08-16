@@ -1,23 +1,23 @@
-import {IsNotEmpty, IsNumber, IsOptional, IsString} from "class-validator";
+import {IsIn, IsNotEmpty, IsNumber, IsOptional, IsString} from "class-validator";
 
-export class NotaUpdateDto{
+export class NotaUpdateDto {
     @IsOptional()
     @IsNumber()
-    notaPrimerBimestre: number
-
-    @IsOptional()
-    @IsNumber()
-    notaSegundoBimestre: number
+    notaPrimerBimestre: number;
 
     @IsOptional()
     @IsNumber()
-    notaExamenFinal: number
+    notaSegundoBimestre: number;
+
+    @IsOptional()
+    @IsNumber()
+    notaExamenFinal: number;
 
     @IsOptional()
     @IsString()
-    comentario: string
+    comentario: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumber()
     usuario: number;
 }
