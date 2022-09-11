@@ -35,7 +35,7 @@ export class NotaEntity {
     })
     comentario: string;
 
-    // nota.entity.ts
+    // digimon.entity.ts
     @ManyToOne( // Muchos a uno, del hijo al papa
         () => UsuarioEntity, // Entidad relacionada
         (user) => user.notas)
