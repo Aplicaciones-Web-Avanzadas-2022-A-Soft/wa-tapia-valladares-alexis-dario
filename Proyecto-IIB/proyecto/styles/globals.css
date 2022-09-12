@@ -1,0 +1,13 @@
+html, body{
+    margin: 0;
+    font-family: Verdana, sans-serif;
+}
+header{
+    background-color: transparent;
+}
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: transparent;
+}
